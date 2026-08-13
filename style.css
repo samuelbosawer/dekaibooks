@@ -136,6 +136,7 @@ address { font-style: normal; }
   height: 40px;
   background: none;
   border: 1px solid currentColor;
+  color: inherit;
   cursor: pointer;
 }
 .nav-toggle span {
