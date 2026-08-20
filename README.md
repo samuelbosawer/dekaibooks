@@ -41,7 +41,7 @@ Urutan section pada `index.html`, mengikuti alur profil resmi Dekaibooks:
 8. **Galeri** — lihat catatan di bawah, saat ini masih berupa bingkai placeholder
 9. **Donasi & Relawan** — ajakan dukungan buku/dana dan keterlibatan relawan, mengarah ke WhatsApp
 10. **Pengurus** — susunan pengurus dan bidang
-11. **Lokasi** — alamat dan peta minimal (OpenStreetMap)
+11. **Lokasi** — alamat lengkap
 12. **Kontak (Mari Terhubung)** — Instagram, Facebook, WhatsApp
 13. **Footer** — identitas singkat, lokasi, tautan sosial, kredit pembuat
 

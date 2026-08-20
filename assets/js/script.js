@@ -73,4 +73,59 @@
   } else {
     revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
   }
+
+  /* Gallery lightbox */
+  var galleryFrames = Array.prototype.slice.call(document.querySelectorAll(".gallery-frame"));
+  var lightbox = document.getElementById("lightbox");
+
+  if (galleryFrames.length && lightbox) {
+    var lightboxImg = document.getElementById("lightbox-img");
+    var lightboxCaption = document.getElementById("lightbox-caption");
+    var lightboxClose = document.getElementById("lightbox-close");
+    var lightboxPrev = document.getElementById("lightbox-prev");
+    var lightboxNext = document.getElementById("lightbox-next");
+    var currentIndex = 0;
+
+    function showAt(index) {
+      currentIndex = (index + galleryFrames.length) % galleryFrames.length;
+      var frame = galleryFrames[currentIndex];
+      var img = frame.querySelector("img");
+      var caption = frame.querySelector(".gallery-caption");
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = caption ? caption.textContent : "";
+    }
+
+    function openLightbox(index) {
+      showAt(index);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    galleryFrames.forEach(function (frame, index) {
+      frame.addEventListener("click", function () { openLightbox(index); });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightboxPrev.addEventListener("click", function () { showAt(currentIndex - 1); });
+    lightboxNext.addEventListener("click", function () { showAt(currentIndex + 1); });
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!lightbox.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showAt(currentIndex + 1);
+      if (e.key === "ArrowLeft") showAt(currentIndex - 1);
+    });
+  }
 })();
