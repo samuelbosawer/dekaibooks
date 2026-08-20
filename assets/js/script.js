@@ -53,7 +53,7 @@
   /* Reveal-on-scroll for editorial sections */
   var revealTargets = document.querySelectorAll(
     ".section-side, .section-body, .big-quote, .visi-title, .lapak-days, " +
-    ".lapak-caption, .lapak-detail, .lapak-note, .gallery-frame, .kontak-title, .kontak-list"
+    ".lapak-caption, .lapak-detail, .lapak-note, .gallery-frame, .berita-card, .kontak-title, .kontak-list"
   );
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
 

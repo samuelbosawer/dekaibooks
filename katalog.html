@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Buku | Dekai Books</title>
+<meta name="description" content="Katalog buku yang tersedia di lapak baca Dekai Books, gerakan literasi dan perpustakaan jalanan dari Yahukimo, Papua Pegunungan.">
+<meta name="author" content="Dekai Books">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Katalog Buku | Dekai Books">
+<meta property="og:description" content="Daftar buku yang tersedia di lapak baca Dekai Books, Yahukimo.">
+<meta property="og:image" content="assets/img/logo.png">
+<meta property="og:locale" content="id_ID">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="katalog">
+
+<a class="skip-link" href="#konten">Langsung ke konten</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="konten">
+
+  <section class="section" id="katalog">
+    <div class="section-grid">
+      <div class="section-side">
+        <span class="section-mark"></span>
+        <span class="section-label">Katalog<br>Buku</span>
+      </div>
+      <div class="section-body">
+        <h1 class="section-title">Buku-buku yang tersedia di lapak baca Dekai Books.</h1>
+
+        <p class="katalog-intro">Daftar berikut diambil langsung dari catatan koleksi kami. Gunakan pencarian untuk menemukan judul, penulis, atau kategori tertentu.</p>
+
+        <div class="katalog-toolbar">
+          <label class="katalog-search-label" for="katalog-search">Cari</label>
+          <input type="search" id="katalog-search" class="katalog-search" placeholder="Judul, penulis, atau kategori...">
+          <span class="katalog-count" id="katalog-count"></span>
+        </div>
+
+        <p class="katalog-state" id="katalog-state">Memuat katalog...</p>
+
+        <div class="katalog-table-wrap" id="katalog-table-wrap" hidden>
+          <table class="katalog-table">
+            <thead id="katalog-thead"></thead>
+            <tbody id="katalog-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<!-- FLOATING SOCIAL -->
+<div class="float-social" id="float-social"></div>
+
+<script src="assets/js/partials.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/katalog.js"></script>
+</body>
+</html>

@@ -126,6 +126,8 @@ address { font-style: normal; }
 }
 .primary-nav a:hover::after,
 .primary-nav a:focus-visible::after { width: 100%; }
+.primary-nav a[aria-current="page"] { color: var(--orange); }
+.primary-nav a[aria-current="page"]::after { width: 100%; }
 
 .nav-toggle {
   display: none;
@@ -156,7 +158,8 @@ address { font-style: normal; }
 .hero {
   position: relative;
   min-height: 100svh;
-  background: var(--black);
+  background:
+    radial-gradient(ellipse 75% 60% at 50% 34%, #212121 0%, #000000 74%);
   color: var(--white);
   display: flex;
   flex-direction: column;
@@ -171,21 +174,40 @@ address { font-style: normal; }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    100deg,
-    rgba(255, 255, 255, .07) 0px,
-    rgba(255, 255, 255, .07) 1px,
-    transparent 1px,
-    transparent 46px
-  );
-  animation: heroLines 34s linear infinite;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255, 255, 255, .13) 0px,
+      rgba(255, 255, 255, .13) 1.5px,
+      transparent 1.5px,
+      transparent 46px
+    ),
+    repeating-linear-gradient(
+      -16deg,
+      rgba(246, 147, 30, .09) 0px,
+      rgba(246, 147, 30, .09) 1px,
+      transparent 1px,
+      transparent 64px
+    );
+  animation: heroLines 42s linear infinite;
   pointer-events: none;
 }
 
-/* Offset equals eight full stripe periods projected onto x/y, so the loop is seamless */
+/* Offsets equal whole stripe periods projected onto x/y for each layer, so the loop is seamless */
 @keyframes heroLines {
-  from { background-position: 0 0; }
-  to   { background-position: 362px 64px; }
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 362px 64px, -106px -369px; }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 .hero-main, .hero-quote {
@@ -266,6 +288,11 @@ address { font-style: normal; }
   width: 28px;
   height: 2px;
   background: var(--orange);
+}
+.section-side-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 .section-label {
   font-size: .74rem;
@@ -527,6 +554,62 @@ address { font-style: normal; }
   line-height: 1.4;
 }
 
+/* ---------------------------------- Berita ---------------------------------- */
+
+.berita-intro {
+  max-width: 56ch;
+  color: #262626;
+  margin: 0 0 36px;
+}
+
+.berita-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.berita-card {
+  display: block;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 14px 30px rgba(0, 0, 0, .07);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.berita-card:hover,
+.berita-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 22px 40px rgba(0, 0, 0, .12);
+}
+
+.berita-thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.berita-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s var(--ease);
+}
+.berita-card:hover .berita-thumb img { transform: scale(1.045); }
+
+.berita-info {
+  padding: clamp(18px, 3vw, 26px);
+}
+.berita-source {
+  display: block;
+  font-size: .76rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.berita-title {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.35;
+  color: var(--ink);
+  transition: color .3s var(--ease);
+}
+.berita-card:hover .berita-title { color: var(--orange); }
+
 /* ---------------------------------- Lightbox ---------------------------------- */
 
 .lightbox {
@@ -662,10 +745,116 @@ address { font-style: normal; }
 
 /* ---------------------------------- Lokasi ---------------------------------- */
 
+.lokasi-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: start;
+}
 .lokasi-body address {
   font-family: var(--font-head);
   font-size: clamp(1.3rem, 2.6vw, 1.8rem);
   line-height: 1.5;
+}
+.lokasi-photo {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.lokasi-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------------------------------- Katalog ---------------------------------- */
+
+.katalog-intro {
+  max-width: 60ch;
+  color: #262626;
+  margin: 0 0 32px;
+}
+
+.katalog-toolbar {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 4px;
+}
+.katalog-search-label {
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+}
+.katalog-search {
+  flex: 1 1 240px;
+  min-width: 0;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 6px 2px;
+  color: var(--ink);
+  transition: border-color .3s var(--ease);
+}
+.katalog-search:focus {
+  outline: none;
+  border-bottom-color: var(--orange);
+}
+.katalog-count {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.katalog-state {
+  padding: 40px 0;
+  color: var(--muted);
+  font-size: .95rem;
+  max-width: 50ch;
+}
+
+.katalog-table-wrap {
+  overflow-x: auto;
+}
+.katalog-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.katalog-table th,
+.katalog-table td {
+  text-align: left;
+  padding: 14px 20px 14px 0;
+  border-top: 1px solid var(--line);
+  font-size: .92rem;
+  vertical-align: top;
+}
+.katalog-table thead th {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  border-top: none;
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+.katalog-table tbody tr:last-child td {
+  border-bottom: 1px solid var(--line);
+}
+.katalog-table tbody td:first-child {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  color: var(--ink);
 }
 
 /* ---------------------------------- Kontak ---------------------------------- */
@@ -813,8 +1002,11 @@ address { font-style: normal; }
 @media (max-width: 860px) {
   .section-grid { grid-template-columns: 1fr; }
   .section-side { flex-direction: row; align-items: center; gap: 14px; }
+  .section-side-logo { width: 40px; height: 40px; }
   .dukung-columns { grid-template-columns: 1fr; }
+  .lokasi-body { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .berita-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
