@@ -126,6 +126,27 @@ Foto dokumentasi ada di `assets/img/galeri/1.webp` sampai `8.webp`. Setiap foto 
 
 Ganti file `assets/img/logo.webp` dengan file baru bernama sama. Logo dipakai di header, hero, footer, favicon, dan Open Graph image lewat `partials.js` dan `index.html`/`katalog.html`.
 
+## Hosting di GitHub Pages & Custom Domain
+
+Repo ini dihosting lewat GitHub Pages di [`dekaibooks/dekaibooks.github.io`](https://github.com/dekaibooks/dekaibooks.github.io), sehingga situs otomatis tersedia di `https://dekaibooks.github.io`.
+
+**Menghubungkan custom domain:**
+
+1. Di GitHub, buka **Settings → Pages**, isi kolom **Custom domain** dengan `www.dekaibooks.org`, lalu Save. GitHub akan membuat file `CNAME` di root repo.
+2. Di panel DNS penyedia domain, tambahkan record berikut:
+
+   | Domain | Type  | Value                  |
+   | ------ | ----- | ---------------------- |
+   | www    | CNAME | dekaibooks.github.io   |
+   | @      | A     | 185.199.108.153        |
+   | @      | A     | 185.199.109.153        |
+   | @      | A     | 185.199.110.153        |
+   | @      | A     | 185.199.111.153        |
+
+   Record `@` membuat `dekaibooks.org` (tanpa www) ikut diarahkan ke GitHub Pages.
+
+3. Tunggu propagasi DNS (beberapa menit hingga 24 jam), lalu centang **Enforce HTTPS** di Settings → Pages.
+
 ## Kredit
 
 Website dikembangkan oleh [sbos.lab](https://projectbos.web.id) untuk Dekai Books.
